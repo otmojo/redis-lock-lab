@@ -1,7 +1,7 @@
 # Redis Lock Laboratory
 
-> A professional-grade experimental suite designed to **validate distributed lock failure semantics**, rather than merely "building another lock."
-> **Goal:** Transitioning from "feeling" that Redis locks are unsafe to **accurately quantifying when, where, and why they fail.**
+ A professional-grade experimental suite designed to **validate distributed lock failure semantics**, rather than merely "building another lock."
+ **Goal:** Transitioning from "feeling" that Redis locks are unsafe to **accurately quantifying when, where, and why they fail.**
 
 ---
 
@@ -15,7 +15,7 @@ This project aims to transform the vague intuition of "Redis locks are unreliabl
 
 From a first-principles perspective, the essence of a distributed lock is not just mutual exclusion, but:
 
-> **Reaching a transient, revocable consensus** on "who is entitled to enter the critical section" within an unreliable distributed world.
+ **Reaching a transient, revocable consensus** on "who is entitled to enter the critical section" within an unreliable distributed world.
 
 Accordingly, this project focuses on three pillars:
 
@@ -51,7 +51,6 @@ Accordingly, this project focuses on three pillars:
 
 ```text
 owner_id = UUID + pid + thread_id
-
 ```
 
 **Rationale:** Ensures every "Renew" or "Release" operation can be **deterministically validated** for legitimacy.
@@ -124,20 +123,20 @@ Every experiment follows a strict functional signature:
 
 ## 6. Progress Report
 
-* [x] Verified lock theft after Watchdog suspension.
-* [x] Confirmed `Renew` failure for owners who have lost their lock.
-* [x] Verified seamless Watchdog handover to the second owner.
+* 🆗 Verified lock theft after Watchdog suspension.
+* 🆗 Confirmed `Renew` failure for owners who have lost their lock.
+* 🆗 Verified seamless Watchdog handover to the second owner.
 
 ---
 
 ## 7. The Myth...
 
-> *"I thought a Watchdog could 'guarantee' that a lock would never be stolen while I was working."*
+ *"I thought a Watchdog could 'guarantee' that a lock would never be stolen while I was working."*
 
 ## 8. The Reality...
 
-> **A Watchdog is a probabilistic life-extension mechanism.** It fails under any pause, block, GC event, or network anomaly.
+ **A Watchdog is a probabilistic life-extension mechanism.** It fails under any pause, block, GC event, or network anomaly.
 
-**Lock safety is derived from protocol design, not from the "feeling" of a heartbeat.**
+**Lock safety is derived from protocol design.**
 
 
